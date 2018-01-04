@@ -1,0 +1,53 @@
+/* CSS declarations go here 
+html, body {
+  overflow: hidden;
+}
+*/
+
+#social {
+  background:red;
+  color:black;
+  height:100%;
+  width: 25%;
+  right:10px;
+  top:0;
+  position:fixed;
+}
+
+#chats,#privatechats {
+  background:blue;
+  color:black;
+  height:90%;
+  width: 100%;
+  top:10;
+  position:absolute;
+
+}
+#msgBox,#privatemsgBox,#manageFriends {
+  position:absolute;
+  overflow-x:hidden;
+  overflow-y:scroll;
+  height:85%;
+  width:100%;
+  background: yellow;
+}
+.msgSubmit {
+  position: absolute;
+  width:100%;
+  bottom: 2px;
+}
+.inputBox {
+  resize: none;
+  width:92%;
+  height: 45px;
+  border: 2px solid black;
+  border-radius: 4px;
+}
+.convo{
+  border: 2px solid black;
+  cursor:pointer;
+}
+button.usernames { background:none;border:none;cursor:pointer; }
+button{
+  cursor:pointer;
+}
