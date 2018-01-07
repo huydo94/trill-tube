@@ -53,6 +53,7 @@ Meteor.methods({
 	addprivateMsg(newMsg,receiver){
 
 		check(newMsg,String);
+		newMsg = Emojis.parse(newMsg);
 		var sender = Meteor.user().username;
 		var pairexisted = privateMsgs.find({pairs:{$all:[sender,receiver]}},{limit:1}).count();
 		if(pairexisted == 0){

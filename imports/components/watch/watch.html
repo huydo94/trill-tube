@@ -1,16 +1,4 @@
-<br>
-<button  ng-click="$ctrl.turnOnTV();"> Turn On</button>
-<br>
-<button  ng-click="$ctrl.turnOnChannel('1');">(｡◕‿◕｡) </button>
-<button  ng-click="$ctrl.turnOnChannel('2');">¯\_(ツ)_/¯</button>
-<button  ng-click="$ctrl.turnOnChannel('3');">(ʘ‿ʘ)</button>
-<br>
-<button  ng-click="$ctrl.synchronize(); ">Synchronize </button>
 
-<br>
-<button ng-click="$ctrl.like();"> Like </button>
-<button ng-click="$ctrl.dislike();"> Dislike </button>
-<br>
 <div ng-show="$ctrl.showManageVid()">
 <form ng-submit="$ctrl.addVid()">
 	Title: <input ng-model="$ctrl.title" type="text" name="text"" required="" /><br>
@@ -21,4 +9,17 @@
 </form>
 </div>
 <br>
+<br>
 <div id="channel"></div>
+<div id="theremote">
+	<div id="channelselect">
+		<button id="button1" class="channelbtn"  ng-click="$ctrl.turnOnChannel('1');">1</button>
+		<button id="button2" class="channelbtn"  ng-click="$ctrl.turnOnChannel('2');">2</button>
+		<button id="button3" class="channelbtn"  ng-click="$ctrl.turnOnChannel('3');">3</button>
+	</div>
+	<div id="extras">
+		<button id="like" ng-click="$ctrl.like();"></button>
+		<button id="dislike" ng-click="$ctrl.dislike();"></button>
+		<button id="spin" title="Catch upp" ng-click="$ctrl.synchronize();"></button>
+	</div>
+</div>

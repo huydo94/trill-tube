@@ -36,35 +36,25 @@ class watchCtrl {
         this.sec = '';
         this.type = '';
     }
-    turnOnTV() {
-        if(tvOn){
-            return;
-        }
-        tvOn = true;
-        currentChannel = '1';
-        Session.set('currentChannel',currentChannel);
-        Meteor.call("getVid", '1', function(error, result) {
-            currentVid = result;
-            if (Meteor.isClient) {
-                onYouTubeIframeAPIReady = function() {
-                    player = new YT.Player("channel", {
-                        height: "500",
-                        width: "890",
-                        // videoId is the "v" in URL (ex: http://www.youtube.com/watch?v=LdH1hSWGFGU, videoId = "LdH1hSWGFGU")
-                        videoId: currentVid.src,
-                        // Events like ready, state change, 
-                        events: {
-                            'onReady': onPlayerReady,
-                            'onStateChange': onPlayerStateChange
-                        }
-                    });
-                };
-                YT.load();
-            }
-        });
-    }
     turnOnChannel(channelID) {
         currentChannel = channelID;
+        switch(channelID){
+            case '1':
+                $(".channelbtn")[0].style.background = 'green';
+                $(".channelbtn")[1].style.background = 'white';
+                $(".channelbtn")[2].style.background = 'white';
+                break;
+            case '2':
+                $(".channelbtn")[0].style.background = 'white';
+                $(".channelbtn")[1].style.background = 'yellow';
+                $(".channelbtn")[2].style.background = 'white';
+                break;
+            case '3':
+                $(".channelbtn")[0].style.background = 'white';
+                $(".channelbtn")[1].style.background = 'white';
+                $(".channelbtn")[2].style.background = 'red';
+                break;
+        }
         Session.set('currentChannel',currentChannel);
         Meteor.call("getVid", currentChannel, function(error, result) {
             currentVid = result;
@@ -94,9 +84,43 @@ function onPlayerReady(event) {
     event.target.seekTo(currentVid.time, true);
 }
 
+$(function() {
+    if(tvOn){
+        return;
+    }
+    tvOn = true;
+    currentChannel = '1';
+    $(".channelbtn")[0].style.background = 'green';
+    Session.set('currentChannel',currentChannel);
+    Meteor.call("getVid", '1', function(error, result) {
+        currentVid = result;
+        if (Meteor.isClient) {
+            onYouTubeIframeAPIReady = function() {
+                player = new YT.Player("channel", {
+                        // videoId is the "v" in URL (ex: http://www.youtube.com/watch?v=LdH1hSWGFGU, videoId = "LdH1hSWGFGU")
+                        width: 854,
+                        height:480,
+                        videoId: currentVid.src,
+                        playerVars: {
+                            controls: 0,
+                            disablekb: 1,
+                            rel : 0
+                        },
+                        // Events like ready, state change, 
+                        events: {
+                            'onReady': onPlayerReady,
+                            'onStateChange': onPlayerStateChange
+                        }
+                    });
+            };
+            YT.load();
+        }
+    });
+});
+
 export default angular.module('watch', [
     angularMeteor
-]).component('watch', {
-    templateUrl: 'imports/components/watch/watch.html',
-    controller: ['$scope', watchCtrl]
-});
+    ]).component('watch', {
+        templateUrl: 'imports/components/watch/watch.html',
+        controller: ['$scope', watchCtrl]
+    });

@@ -10,16 +10,28 @@ import { Session } from 'meteor/session'
 
 var currentFriend;
 var guest = {
-  "background" : "pink",
+  "background" : "rgba(137, 255, 47, 0.3)",
   "display": "inline-block",
   "float" : "right",
-  "clear" : "both"
+  "clear" : "both",
+  //"word-wrap": "break-word",
+  //"width":"49%",
+  "border-radius":"7px",
+  "margin":"5px",
+  "margin-left":"50px",
+  "padding":"5px"
 };
 var owner = {
-  "background" : "white",
+  "background" : "rgba(255, 255, 255, 0.3)",
   "display": "inline-block",
   "float" : "left",
-  "clear" : "both"
+  "clear" : "both",
+  //"word-wrap": "break-word",
+  //"width":"49%",
+  "border-radius":"7px",
+  "margin":"5px",
+  "margin-right":"50px",
+  "padding":"5px"
 };
 
 class chatCtrl {
@@ -74,6 +86,9 @@ class chatCtrl {
       Meteor.call('addprivateMsg',newPM,currentFriend);
     }
     this.newPM ='';
+    $('#privatemsgBox').stop().animate({
+      scrollTop: $('#privatemsgBox')[0].scrollHeight
+    }, 800);
   }
   myColor(){
     return Meteor.user().profile.color;
@@ -99,8 +114,9 @@ class chatCtrl {
     Meteor.call('addMsg',newMsg,currentChannel);
     // Clear form
     this.newMsg = '';
-    var msgBox = document.getElementById('msgBox');
-    msgBox.scrollTop = msgBox.scrollHeight;
+    $('#msgBox').stop().animate({
+      scrollTop: $('#msgBox')[0].scrollHeight
+    }, 800);
   }
 
   requestFriend(username){
@@ -127,18 +143,39 @@ class chatCtrl {
   }
 
   removeFriend(username){
-    Meteor.call('removeFriend',username);
+    if(confirm("Are you really unfriending "+username+"?") == true){
+      Meteor.call('removeFriend',username);
+    }else{
+      return;
+    } 
+  }
+  publicBtn(){
+    $(".chatBtn")[0].style.background = 'rgba(0, 0, 0, 0)';
+    $(".chatBtn")[1].style.background = 'rgba(0, 0, 0, 1)';
+  }
+  friendBtn(){
+    $(".chatBtn")[0].style.background = 'rgba(0, 0, 0, 1)';
+    $(".chatBtn")[1].style.background = 'rgba(0, 0, 0, 0)';
   }
 
 }
 $(function() {
 
   $(".inputBox").keypress(function (e) {
-    if(e.which == 13 && !e.shiftKey) {        
+    if(e.which == 13) {        
       $('.submit', $(e.target.form)).click();
       e.preventDefault();
       return false;
     }
+  });
+
+  $(".inputBox").focus(function(){
+    $('#msgBox').stop().animate({
+      scrollTop: $('#msgBox')[0].scrollHeight
+    }, 800);
+    $('#privatemsgBox').stop().animate({
+      scrollTop: $('#privatemsgBox')[0].scrollHeight
+    }, 800);  
   });
 });
 

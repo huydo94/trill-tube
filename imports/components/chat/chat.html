@@ -1,26 +1,25 @@
 <div id="social">
-	<button ng-click="public = true;friendlist = false;private = false;">
+	<button class="chatBtn" ng-click="public = true;friendlist = false;private = false; $ctrl.publicBtn();">
 		Public
 	</button>
-	<button ng-click="friendlist =true; public = false; private=false;">
+	<button class="chatBtn" ng-click="friendlist =true; public = false; private=false;$ctrl.friendBtn();">
 		Friends
 	</button>
 
 	<div id="chats" ng-show="public">
 		<div id="msgBox">
-			<div ng-repeat="msg in $ctrl.messages">
-				<button class="usernames" ng-click="$ctrl.requestFriend(msg.user);" ng-style="{color: msg.color}">{{msg.user}} : </button> {{msg.text}}
+			<div  ng-repeat="msg in $ctrl.messages">
+				<button class="usernames" ng-click="$ctrl.requestFriend(msg.user);" ng-style="{color: msg.color}">{{msg.user}} : </button> <span class="textmsg">{{msg.text}}</span>
 			</div>
 		</div>
 		<form class="msgSubmit" ng-submit="$ctrl.addMsg($ctrl.newMsg)">
-			<textarea ng-model="$ctrl.newMsg" class="inputBox" placeholder="Send to public"></textarea>
-			<input type="submit" value="Send"/>
+			<textarea ng-model="$ctrl.newMsg" class="inputBox" placeholder="Enter to send..."></textarea>
 			<input type="submit" class="submit" style="display: none" />
 		</form>
 	</div>
 
 	<div id="privatechats" ng-show="private">
-		<button ng-click="friendlist =true; public = false; private=false;">
+		<button id="backBtn" ng-click="friendlist =true; public = false; private=false;">
 		Back
 		</button>
 		<div id="privatemsgBox">
@@ -31,8 +30,7 @@
 			</div>
 		</div>
 		<form class="msgSubmit" ng-submit="$ctrl.addprivateMsg($ctrl.newPM)">
-			<textarea ng-model="$ctrl.newPM" class="inputBox" placeholder="Send PM"></textarea>
-			<input type="submit" value="Send"/>
+			<textarea ng-model="$ctrl.newPM" class="inputBox" placeholder="Enter to send..."></textarea>
 			<input type="submit" class="submit" style="display: none" />
 		</form>
 	</div>
@@ -41,25 +39,29 @@
 		<div id="friendrequests">
 			<div ng-repeat ="user in ($ctrl.friendships)">
 				<div ng-show="user.requests.length>0">
-					Requests:
+					<br>
+					<span style="color:red;">Your friend requests:</span>
 				</div>
-				<div ng-repeat = "request in user.requests">
+				<div style="padding-left: 5px;margin: 10px;" ng-repeat = "request in user.requests">
 					{{request}} 
-					<button ng-click="$ctrl.acceptFriend(request);">Accept</button>
-					<button ng-click="$ctrl.denyFriend(request);">Deny</button>
+					<button style="float:right;" ng-click="$ctrl.denyFriend(request);">Deny</button>
+					<button style="float:right;margin-right:10px;background: green;color:white;" ng-click="$ctrl.acceptFriend(request);">Accept</button>
 				</div>
 			</div>
+		<br>
 		</div>
+
 		<div id="friendlist">
 			<div ng-repeat="user in ($ctrl.friendships)">
 				<div ng-show="user.friends.length>0">
-					Friends:
+					<br>
+					<span style="color:yellow;"> Your private convos: </span>
 				</div>
 				<div ng-repeat = "friend in user.friends">
 					<div class="convo" ng-click="$parent.$parent.private=true;$parent.$parent.public = false;$parent.$parent.friendlist = false;$ctrl.selectFriend(friend);">{{friend}} 
-					<br> Let's talk	
+					<br> 	
 					</div>
-					<button ng-click="$ctrl.removeFriend(friend);">Remove</button>	
+					<button class="rmBtn" ng-click="$ctrl.removeFriend(friend);">Remove</button>	
 
 				</div>
 			</div>
