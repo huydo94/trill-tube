@@ -6,7 +6,7 @@
 		Friends
 	</button>
 
-	<div id="chats" ng-show="public">
+	<div id="chats" ng-init="public=true;" ng-show="public">
 		<div id="msgBox">
 			<div  ng-repeat="msg in $ctrl.messages">
 				<button class="usernames" ng-click="$ctrl.requestFriend(msg.user);" ng-style="{color: msg.color}">{{msg.user}} : </button> <span class="textmsg">{{msg.text}}</span>

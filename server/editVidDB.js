@@ -15,7 +15,7 @@ Meteor.methods({
 			videoDB1.insert({
 				title: title,
 				src: YouTubeGetID(src),
-				time: (min * 60 + sec),
+				time: (min * 60 + sec - 1),
 				likes: 0,
 				dislikes: 0,
 			});
@@ -24,7 +24,7 @@ Meteor.methods({
 			videoDB2.insert({
 				title: title,
 				src: YouTubeGetID(src),
-				time: (min * 60 + sec),
+				time: (min * 60 + sec - 1),
 				likes: 0,
 				dislikes: 0,
 			});
@@ -33,13 +33,26 @@ Meteor.methods({
 			videoDB3.insert({
 				title: title,
 				src: YouTubeGetID(src),
-				time: (min * 60 + sec),
+				time: (min * 60 + sec - 1),
 				likes: 0,
 				dislikes: 0,
 			});
 			break;
 		}
 		console.log("added " + YouTubeGetID(src));
+	},
+	removeVid(currentChannel,currentVid){
+		switch (currentChannel) {
+				case '1':
+				videoDB1.remove({src: currentVid.src});
+				break;
+				case '2':
+				videoDB2.remove({src: currentVid.src});
+				break;
+				case '3':
+				videoDB3.remove({src: currentVid.src});
+				break;
+			}
 	},
 	likeVid(currentChannel,currentVid){
 		var alreadyliked = likes.find({user:Meteor.userId(),vid:currentVid.src},{limit:1}).count();

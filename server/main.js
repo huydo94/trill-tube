@@ -6,71 +6,149 @@ import { videoDB3 } from '../imports/api/videoDB.js';
 var Fiber = require('fibers');
 
 var curtime1 = 0;
-var currentVid1 = {};
+var currentVid1;
 var lengthCurVid1 = 0;
+var curidx1 = 0;
+var curAllVids1; 
 
 var curtime2 = 0;
-var currentVid2 = {};
+var currentVid2;
 var lengthCurVid2 = 0;
+var curidx2 = 0;
+var curAllVids2;
 
 var curtime3 = 0;
-var currentVid3 = {};
+var currentVid3;
 var lengthCurVid3 = 0;
+var curidx3 = 0;
+var curAllVids3;
 
 setInterval(function() {
 	curtime1 += 1;
 	if(curtime1 > lengthCurVid1){
-		Fiber(function(){
-			currentVid1 = videoDB1.aggregate({$sample: { size: 1 }});
-			lengthCurVid1 = currentVid1[0].time;
-			curtime1 = 0;
-		}).run();
+		currentVid1 = curAllVids1[curidx1];
+		lengthCurVid1 = currentVid1.time;
+		curtime1 = 0;
+		curidx1++;
+		if(curidx1 == curAllVids1.length){
+			curidx1 = 0;
+			Fiber(function(){
+				var arr = videoDB1.find({}).fetch();
+				curAllVids1 = shuffle(arr);
+			}).run();
+		}
 	}
-		
 }, 1000);
 
 setInterval(function() {
 	curtime2 += 1;
 	if(curtime2 > lengthCurVid2){
-		Fiber(function(){
-			currentVid2 = videoDB2.aggregate({$sample: { size: 1 }});
-			lengthCurVid2 = currentVid2[0].time;
-			curtime2 = 0;
-		}).run();
+		currentVid2 = curAllVids2[curidx2];
+		lengthCurVid2 = currentVid2.time;
+		curtime2 = 0;
+		curidx2++;
+		if(curidx2 == curAllVids2.length){
+			curidx2 = 0;
+			Fiber(function(){
+				var arr = videoDB2.find({}).fetch();
+				curAllVids2 = shuffle(arr);
+			}).run();
+		}
 	}
-		
 }, 1000);
 
 setInterval(function() {
 	curtime3 += 1;
 	if(curtime3 > lengthCurVid3){
-		Fiber(function(){
-			currentVid3 = videoDB3.aggregate({$sample: { size: 1 }});
-			lengthCurVid3 = currentVid3[0].time;
-			curtime3 = 0;
-		}).run();
+		currentVid3 = curAllVids3[curidx3];
+		lengthCurVid3 = currentVid3.time;
+		curtime3 = 0;
+		curidx3++;
+		if(curidx3 == curAllVids3.length){
+			curidx3 = 0;
+			Fiber(function(){
+				var arr = videoDB3.find({}).fetch();
+				curAllVids3 = shuffle(arr);
+			}).run();
+		}
 	}
-		
 }, 1000);
 
 Meteor.methods({
 	getVid(channelID){
 		switch(channelID){
 			case '1':
-				return {src: currentVid1[0].src,time: curtime1};
-				break;
+			return {src: currentVid1.src,time: curtime1};
 			case '2':
-				return {src: currentVid2[0].src,time: curtime2};
-				break;
+			return {src: currentVid2.src,time: curtime2};
 			case '3':
-				return {src: currentVid3[0].src,time: curtime3};		
-				break;
+			return {src: currentVid3.src,time: curtime3};		
+		}
+	},
+	nextVid(channelID){
+		switch(channelID){
+			case '1':
+			lengthCurVid1 = 0;
+			break;
+			case '2':
+			lengthCurVid2 = 0;
+			break;
+			case '3':
+			lengthCurVid3 = 0;	
+			break;
 		}
 	}
-});
+}); 
+
+/**
+ * Shuffles array in place. ES6 version
+ * @param {Array} a items An array containing the items.
+ */
+ function shuffle(a) {
+ 	for (let i = a.length - 1; i > 0; i--) {
+ 		const j = Math.floor(Math.random() * (i + 1));
+ 		[a[i], a[j]] = [a[j], a[i]];
+ 	}
+ 	return a;
+ }
+
+ function getAllVids(channelID){
+ 	switch(channelID){
+ 		case 1:
+ 		Fiber(function(){
+ 			var arr = videoDB1.find({}).fetch();
+ 			curAllVids1 = shuffle(arr);
+ 			currentVid1 = curAllVids1[curidx1];		
+ 			lengthCurVid1 = currentVid1.time;
+ 			curidx1++;
+ 		}).run();
+ 		break;
+ 		case 2:
+ 		Fiber(function(){
+ 			var arr = videoDB2.find({}).fetch();
+ 			curAllVids2 = shuffle(arr);
+ 			//console.log(curAllVids2);
+ 			currentVid2 = curAllVids2[curidx2];		
+ 			lengthCurVid2 = currentVid2.time;
+ 			curidx2++;
+ 		}).run();
+ 		break;
+ 		case 3:
+ 		Fiber(function(){
+ 			var arr = videoDB3.find({}).fetch();
+ 			curAllVids3 = shuffle(arr);
+ 			currentVid3 = curAllVids3[curidx3];		
+ 			lengthCurVid3 = currentVid3.time;
+ 			curidx3++;
+ 		}).run();
+ 		break;
+ 	}
+ }
 
 
-
-Meteor.startup(() => {
+ Meteor.startup(() => {
   // code to run on server at startup
+  getAllVids(1);
+  getAllVids(2);
+  getAllVids(3);
 });

@@ -36,6 +36,16 @@ class watchCtrl {
         this.sec = '';
         this.type = '';
     }
+    
+    removeVid(){
+        Meteor.call('removeVid',currentChannel,currentVid);
+    }
+
+    nextVid(){
+        Meteor.call('nextVid',currentChannel);
+        player.stopVideo();
+    }
+
     turnOnChannel(channelID) {
         currentChannel = channelID;
         switch(channelID){
