@@ -29,8 +29,7 @@ class watchCtrl {
         }
     }
     addVid() {
-        Meteor.call('addVid',this.type,this.src,this.min,this.sec,this.title);
-        this.title = '';
+        Meteor.call('addVid',this.type,this.src,this.min,this.sec);
         this.src = '';
         this.min = '';
         this.sec = '';

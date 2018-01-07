@@ -9,11 +9,10 @@ import { dislikes } from '../imports/api/vidFav.js';
 
 
 Meteor.methods({
-	addVid(type,src,min,sec,title){
+	addVid(type,src,min,sec){
 		switch (type) {
 			case 1:
 			videoDB1.insert({
-				title: title,
 				src: YouTubeGetID(src),
 				time: (min * 60 + sec - 1),
 				likes: 0,
@@ -22,7 +21,6 @@ Meteor.methods({
 			break;
 			case 2:
 			videoDB2.insert({
-				title: title,
 				src: YouTubeGetID(src),
 				time: (min * 60 + sec - 1),
 				likes: 0,
@@ -31,7 +29,6 @@ Meteor.methods({
 			break;
 			case 3:
 			videoDB3.insert({
-				title: title,
 				src: YouTubeGetID(src),
 				time: (min * 60 + sec - 1),
 				likes: 0,
