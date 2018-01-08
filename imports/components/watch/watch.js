@@ -50,17 +50,17 @@ class watchCtrl {
         switch(channelID){
             case '1':
                 $(".channelbtn")[0].style.background = 'green';
-                $(".channelbtn")[1].style.background = 'white';
-                $(".channelbtn")[2].style.background = 'white';
+                $(".channelbtn")[1].style.background = 'black';
+                $(".channelbtn")[2].style.background = 'black';
                 break;
             case '2':
-                $(".channelbtn")[0].style.background = 'white';
+                $(".channelbtn")[0].style.background = 'black';
                 $(".channelbtn")[1].style.background = 'yellow';
-                $(".channelbtn")[2].style.background = 'white';
+                $(".channelbtn")[2].style.background = 'black';
                 break;
             case '3':
-                $(".channelbtn")[0].style.background = 'white';
-                $(".channelbtn")[1].style.background = 'white';
+                $(".channelbtn")[0].style.background = 'black';
+                $(".channelbtn")[1].style.background = 'black';
                 $(".channelbtn")[2].style.background = 'red';
                 break;
         }

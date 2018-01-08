@@ -13,14 +13,14 @@
 <br>
 <div id="channel"></div>
 <div id="theremote">
+	<button id="spin" title="Catch upp" ng-click="$ctrl.synchronize();"></button>
 	<div id="channelselect">
-		<button id="button1" class="channelbtn"  ng-click="$ctrl.turnOnChannel('1');">1</button>
-		<button id="button2" class="channelbtn"  ng-click="$ctrl.turnOnChannel('2');">2</button>
-		<button id="button3" class="channelbtn"  ng-click="$ctrl.turnOnChannel('3');">3</button>
+		<button title="fun" id="button1" class="channelbtn"  ng-click="$ctrl.turnOnChannel('1');">1</button>
+		<button title="mind" id="button2" class="channelbtn"  ng-click="$ctrl.turnOnChannel('2');">2</button>
+		<button title="music" id="button3" class="channelbtn"  ng-click="$ctrl.turnOnChannel('3');">3</button>
 	</div>
 	<div id="extras">
 		<button id="like" ng-click="$ctrl.like();"></button>
 		<button id="dislike" ng-click="$ctrl.dislike();"></button>
-		<button id="spin" title="Catch upp" ng-click="$ctrl.synchronize();"></button>
 	</div>
 </div>

@@ -94,6 +94,8 @@ body {
     width:25px;
     border: none;
     border-radius: 50%;
+    color:white;
+    background-color:black;
 }
 .channelbtn:hover{
     background-color: mistyrose;
@@ -108,13 +110,13 @@ body {
   background-color: red !important;
 }
 #theremote{
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.7);
   position: absolute;
-  padding:15px;
-  width:120px;
+  padding:0px 0px 48px 5px;
   text-align: center;
-  bottom:10%;
-  left:30%;
+  right:27%;
+  width:90px;
+  border-radius: 5px;
 }
 .chatBtn{
   width:48%;
@@ -273,23 +275,15 @@ button{
 }
 
 #like {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px transparent;
   position: relative;
-  padding-right: 2.2em;
-  padding-left: 1em;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
+  width:30px;
+  height: 35px;
   background: transparent;
 }
 #like:before {
   content: "\f087";
   position: absolute;
-  right: 1em;
-  padding: 0 1px;
+  right: 10px;
   font-family: FontAwesome;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
@@ -308,22 +302,15 @@ button{
 }
 
 #dislike {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px transparent;
   position: relative;
-  padding-right: 2.2em;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
+  width:30px;
+  height: 35px;
   background: transparent;
 }
 #dislike:before {
   content: "\f088";
   position: absolute;
-  right: 1em;
-  padding: 0 1px;
+  right: 10px;
   font-family: FontAwesome;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
@@ -342,20 +329,16 @@ button{
 }
 
 #spin {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px transparent;
+  width:30px;
+  height: 20px;
+  margin-bottom: 15px;
   position: relative;
-  padding-left: 2.2em;
   background: transparent;
 }
 #spin:before {
   content: "\f021";
   position: absolute;
-  right: 1em;
-  padding: 0 1px;
+  right:10px;
   font-family: FontAwesome;
   -webkit-transition-duration: 1s;
   transition-duration: 1s;
