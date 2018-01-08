@@ -1,19 +1,25 @@
+<br>
+<br>
 
-<div ng-show="$ctrl.showManageVid()">
+<div id="admin" ng-show="$ctrl.showManageVid();">
 <form ng-submit="$ctrl.addVid()">
     URL: <input ng-model="$ctrl.src" type="text" name="text"" required="" /> <br>
     Min: <input ng-model="$ctrl.min" type="number" /> Sec: <input ng-model="$ctrl.sec" type="number" required="" /><br>
-    Type: (1-funny; 2-mindblowing; 3-food) <input ng-model="$ctrl.type" type="number" required="" /> <br>
+    Type: <input ng-model="$ctrl.type" type="number" required="" /> <br>
     <input type="submit" value="Add Video"/>
 </form>
 	<button ng-click="$ctrl.removeVid();">Remove this vid</button>
 	<button ng-click="$ctrl.nextVid();">Next Vid</button>
 </div>
-<br>
-<br>
+
 <div id="channel"></div>
+
+
 <div id="theremote">
-	<button id="spin" title="Catch upp" ng-click="$ctrl.synchronize();"></button>
+	<div>
+		<button id="spin" title="Catch upp" ng-click="$ctrl.synchronize();"></button>
+		<button id="off"  ng-click="$ctrl.showTV();"></button>
+	</div>
 	<div id="channelselect">
 		<button title="fun" id="button1" class="channelbtn"  ng-click="$ctrl.turnOnChannel('1');">1</button>
 		<button title="mind" id="button2" class="channelbtn"  ng-click="$ctrl.turnOnChannel('2');">2</button>

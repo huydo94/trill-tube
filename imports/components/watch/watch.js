@@ -7,6 +7,7 @@ var currentVid;
 var currentChannel;
 var player;
 var tvOn = false;
+var curview = 1;
 class watchCtrl {
     constructor($scope) {
         $scope.viewModel(this);
@@ -27,6 +28,10 @@ class watchCtrl {
         } else {
             return false;
         }
+    }
+    showTV(){
+        curview = 1 - curview;
+        $("#channel").css('opacity',curview);
     }
     addVid() {
         Meteor.call('addVid',this.type,this.src,this.min,this.sec);
