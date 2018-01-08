@@ -123,6 +123,10 @@ body {
   right:27%;
   width:90px;
   border-radius: 5px;
+  z-index: 999;
+}
+#theremote:hover{
+  background: rgba(255, 255, 255, 0.9);
 }
 .chatBtn{
   width:48%;

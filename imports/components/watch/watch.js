@@ -130,6 +130,8 @@ $(function() {
             YT.load();
         }
     });
+
+    //$("#theremote").draggable({snap: "#channel", snapMode: "outer"});
 });
 
 export default angular.module('watch', [
