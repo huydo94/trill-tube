@@ -30,8 +30,14 @@ class watchCtrl {
         }
     }
     showTV(){
+        if(curview == 1){
+            $("#channel").css('visibility','hidden');
+            player.pauseVideo();
+        }else{
+            $("#channel").css('visibility','visible');
+            synchronize();
+        }
         curview = 1 - curview;
-        $("#channel").css('opacity',curview);
     }
     addVid() {
         Meteor.call('addVid',this.type,this.src,this.min,this.sec);
@@ -77,13 +83,18 @@ class watchCtrl {
         });
     }
     synchronize() {
-        Meteor.call("getVid", currentChannel, function(error, result) {
+        synchronize();
+    }
+}
+
+function synchronize(){
+    Meteor.call("getVid", currentChannel, function(error, result) {
             currentVid = result;
             player.loadVideoById(currentVid.src, 0, "default");
             player.seekTo(currentVid.time, true);
         });
-    }
 }
+
 
 function onPlayerStateChange(event) {
     if (event.data == 0) {
