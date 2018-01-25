@@ -23,10 +23,8 @@
 		Back
 		</button>
 		<div id="privatemsgBox">
-			<div ng-repeat="ONE in $ctrl.privatemessages">
-				<div ng-repeat = "PM in ONE.messages">
-					<div ng-style="$ctrl.PMdiv(PM.sender)">{{PM.text}}</div>
-				</div>
+			<div ng-repeat="PM in $ctrl.privatemessages">
+				<div ng-style="$ctrl.PMdiv(PM.sender)">{{PM.text}}</div>
 			</div>
 		</div>
 		<form class="msgSubmit" ng-submit="$ctrl.addprivateMsg($ctrl.newPM)">

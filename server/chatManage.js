@@ -55,14 +55,20 @@ Meteor.methods({
 		check(newMsg,String);
 		newMsg = Emojis.parse(newMsg);
 		var sender = Meteor.user().username;
-		var pairexisted = privateMsgs.find({pairs:{$all:[sender,receiver]}},{limit:1}).count();
-		if(pairexisted == 0){
-			privateMsgs.insert({pairs:[sender,receiver],messages:[]});
-		}
-		privateMsgs.update(
-			{pairs:{$all:[sender,receiver]}},
-			{$push:{messages:{text:newMsg,sender:sender}}}
-		);
+		// var pairexisted = privateMsgs.find({pairs:{$all:[sender,receiver]}},{limit:1}).count();
+		// if(pairexisted == 0){
+		// 	privateMsgs.insert({pairs:[sender,receiver],messages:[]});
+		// }
+		// privateMsgs.update(
+		// 	{pairs:{$all:[sender,receiver]}},
+		// 	{$push:{messages:{text:newMsg,sender:sender}}}
+		// );
+		privateMsgs.insert({
+			sender: sender,
+			receiver:receiver,
+			text:newMsg,
+			createdAt: new Date
+		});
 	}
 
 

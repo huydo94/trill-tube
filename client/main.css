@@ -3,7 +3,7 @@ html, body {
   overflow: hidden;
 }
 */
-body {
+body,html {
   color:white;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   overflow-y: hidden;
@@ -12,6 +12,7 @@ body {
   height:100%;
   width:100%;
 }
+
 .background-image {
   position:fixed;
   left:0;
@@ -85,7 +86,7 @@ body {
 .textmsg{
   word-wrap: break-word;
 }
-#channel{
+#channel,#channelQ{
   width: 73%;
   border: 2px solid black;
 }
@@ -96,15 +97,15 @@ body {
   display: inline-block;
 }
 .channelbtn{
-    height: 25px;
-    width:25px;
-    border: none;
-    border-radius: 50%;
-    color:white;
-    background-color:black;
+  height: 25px;
+  width:25px;
+  border: none;
+  border-radius: 50%;
+  color:white;
+  background-color:black;
 }
 .channelbtn:hover{
-    background-color: mistyrose;
+  background-color: mistyrose;
 }
 #button1:hover{
   background-color: green !important;
@@ -188,13 +189,13 @@ button{
 }
 
 ::-webkit-scrollbar {
-    width: 0.8em;
+  width: 0.8em;
 }
- 
+
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
- 
+
 ::-webkit-scrollbar-thumb {
   background: rgba(255,255,255,0.5);
 }

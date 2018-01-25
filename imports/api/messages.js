@@ -21,6 +21,6 @@ if (Meteor.isServer) {
       if(!user){
         return;
       }
-      return privateMsgs.find({pairs:user.username});
+      return privateMsgs.find({$or:[{sender:user.username},{receiver:user.username}]});
     });
 }

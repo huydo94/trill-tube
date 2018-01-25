@@ -76,11 +76,7 @@ class watchCtrl {
                 break;
         }
         Session.set('currentChannel',currentChannel);
-        Meteor.call("getVid", currentChannel, function(error, result) {
-            currentVid = result;
-            player.loadVideoById(currentVid.src, 0, "default");
-            player.seekTo(currentVid.time, true);
-        });
+        synchronize();
     }
     synchronize() {
         synchronize();

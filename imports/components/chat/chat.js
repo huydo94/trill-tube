@@ -9,6 +9,7 @@ import { privateMsgs } from '../../api/messages.js';
 import { Session } from 'meteor/session'
 
 var currentFriend;
+var timeloggedin = new Date;
 var guest = {
   "background" : "rgba(137, 255, 47, 0.3)",
   "display": "inline-block",
@@ -41,7 +42,17 @@ class chatCtrl {
     this.subscribe('messages2');
     this.subscribe('messages3');
     this.subscribe('friendships');
-    this.subscribe('privateMsgs');
+    this.subscribe('privateMsgs', function() {
+      var init = privateMsgs.find({createdAt:{$gt:timeloggedin}}).observeChanges({
+        added: function(id, doc) {
+          if(!init) return;
+          var sender = privateMsgs.findOne({_id:id}).sender;
+          if(sender != Meteor.user().username){
+            alert(sender+" sent you a message.");
+          }
+        }
+      });
+    });
     this.helpers({
       messages() {
         var currentChannel = Session.get('currentChannel');
@@ -62,7 +73,7 @@ class chatCtrl {
 
       privatemessages(){
         currentFriend = Session.get('currentFriend');
-        return privateMsgs.find({pairs:currentFriend});
+        return privateMsgs.find({$or:[{sender:currentFriend},{receiver:currentFriend}]},{sort:{createdAt:1}});
       },
 
       friendships(){
@@ -160,7 +171,6 @@ class chatCtrl {
 
 }
 $(function() {
-
   $(".inputBox").keypress(function (e) {
     if(e.which == 13) {        
       $('.submit', $(e.target.form)).click();
@@ -178,7 +188,6 @@ $(function() {
     }, 800);  
   });
 });
-
 
 
 export default angular.module('chat', [
