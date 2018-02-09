@@ -18,8 +18,6 @@ git clone https://github.com/huydo94/trill-tube.git
 
 ```
 cd trill-tube
-meteor remove blaze-html-templates
-meteor add angular-templates
 meteor npm install --save angular angular-meteor
 ```
 
@@ -28,7 +26,7 @@ Then hit
 meteor
 ``` 
 
-to run the app. Go to your browser (preferable Chrome) and enter localhost:3000 to view the site. 
+to run the app. Go to your browser (preferably Chrome) and enter localhost:3000 to view the site. 
 
 
 

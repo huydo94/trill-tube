@@ -87,7 +87,7 @@ body,html {
   word-wrap: break-word;
 }
 #channel,#channelQ{
-  width: 73%;
+  /*width: 100%;*/
   border: 2px solid black;
 }
 #channelselect{
@@ -118,7 +118,9 @@ body,html {
 }
 #theremote{
   background: rgba(255, 255, 255, 0.7);
-  position: absolute;
+  position: fixed;
+  top:50%;
+  left:50%;
   padding:0px 1px 48px 1px;
   text-align: center;
   right:27%;

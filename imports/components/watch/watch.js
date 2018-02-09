@@ -113,14 +113,17 @@ $(function() {
     currentChannel = '1';
     $(".channelbtn")[0].style.background = 'green';
     Session.set('currentChannel',currentChannel);
+    var width = $(window).width() - 24;
+    var height = $(window).height() - 40;
+
     Meteor.call("getVid", '1', function(error, result) {
         currentVid = result;
         if (Meteor.isClient) {
             onYouTubeIframeAPIReady = function() {
                 player = new YT.Player("channel", {
                         // videoId is the "v" in URL (ex: http://www.youtube.com/watch?v=LdH1hSWGFGU, videoId = "LdH1hSWGFGU")
-                        width: 854,
-                        height:480,
+                        width: width,
+                        height:height,
                         videoId: currentVid.src,
                         playerVars: {
                             controls: 0,
@@ -138,7 +141,7 @@ $(function() {
         }
     });
 
-    //$("#theremote").draggable({snap: "#channel", snapMode: "outer"});
+    $("#theremote").draggable();
 });
 
 export default angular.module('watch', [

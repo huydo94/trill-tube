@@ -52,6 +52,7 @@ class chatCtrl {
           if(sender != Meteor.user().username && sender != currentFriend){
             $(".chatBtn").eq(1).html('Friends (*)');
             $('.convo:contains("'+sender+'")').css('background-color', 'red');
+            document.title = "trill.tube (1)";
             //alert(sender+" sent you a message.");
           }
         }
@@ -87,11 +88,17 @@ class chatCtrl {
     });
   }
   channel(){
-    return currentChannel;
+    return "Chatting with Channel " + currentChannel + "...";
+  }
+  friend(){
+    return "Chatting with " + currentFriend + "...";
   }
   selectFriend(friend){
     $('.convo:contains("'+friend+'")').css('background-color', 'transparent');
     Session.set('currentFriend',friend);
+    currentFriend = friend;
+    $(".chatBtn").eq(1).html('Friends');
+    document.title = "trill.tube";
   }
   addprivateMsg(newPM){
     if (!Meteor.userId()) {
@@ -171,11 +178,14 @@ class chatCtrl {
   publicBtn(){
     $(".chatBtn")[0].style.background = 'rgba(0, 0, 0, 0)';
     $(".chatBtn")[1].style.background = 'rgba(0, 0, 0, 1)';
+    currentFriend = null;
   }
   friendBtn(){
     $(".chatBtn")[0].style.background = 'rgba(0, 0, 0, 1)';
     $(".chatBtn")[1].style.background = 'rgba(0, 0, 0, 0)';
+    currentFriend = null;
     $(".chatBtn").eq(1).html('Friends');
+    document.title = "trill.tube";
   }
 
 }
