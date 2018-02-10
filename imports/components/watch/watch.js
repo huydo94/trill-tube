@@ -19,16 +19,6 @@ class watchCtrl {
     dislike(){
         Meteor.call('dislikeVid',currentChannel,currentVid);
     }
-    showManageVid() {
-        if (!Meteor.userId()) {
-            return false;
-        }
-        if (Meteor.user().username == 'huydo') {
-            return true;
-        } else {
-            return false;
-        }
-    }
     showTV(){
         if(curview == 1){
             $("#channel").css('visibility','hidden');
@@ -38,17 +28,6 @@ class watchCtrl {
             synchronize();
         }
         curview = 1 - curview;
-    }
-    addVid() {
-        Meteor.call('addVid',this.type,this.src,this.min,this.sec);
-        this.src = '';
-        this.min = '';
-        this.sec = '';
-        this.type = '';
-    }
-    
-    removeVid(){
-        Meteor.call('removeVid',currentChannel,currentVid);
     }
 
     nextVid(){

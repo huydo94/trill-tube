@@ -9,34 +9,33 @@ import { dislikes } from '../imports/api/vidFav.js';
 
 
 Meteor.methods({
-	addVid(type,src,min,sec){
+	addVid(type,src,sec){
 		switch (type) {
 			case 1:
 			videoDB1.insert({
-				src: YouTubeGetID(src),
-				time: (min * 60 + sec - 1),
+				src: src,
+				time: sec,
 				likes: 0,
 				dislikes: 0,
 			});
 			break;
 			case 2:
 			videoDB2.insert({
-				src: YouTubeGetID(src),
-				time: (min * 60 + sec - 1),
+				src: src,
+				time: sec,
 				likes: 0,
 				dislikes: 0,
 			});
 			break;
 			case 3:
 			videoDB3.insert({
-				src: YouTubeGetID(src),
-				time: (min * 60 + sec - 1),
+				src: src,
+				time: sec,
 				likes: 0,
 				dislikes: 0,
 			});
 			break;
 		}
-		console.log("added " + YouTubeGetID(src));
 	},
 	removeVid(currentChannel,currentVid){
 		switch (currentChannel) {

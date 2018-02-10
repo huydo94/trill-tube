@@ -127,7 +127,6 @@ Meteor.methods({
  		Fiber(function(){
  			var arr = videoDB2.find({}).fetch();
  			curAllVids2 = shuffle(arr);
- 			//console.log(curAllVids2);
  			currentVid2 = curAllVids2[curidx2];		
  			lengthCurVid2 = currentVid2.time;
  			curidx2++;

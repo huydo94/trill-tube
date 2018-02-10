@@ -86,10 +86,6 @@ body,html {
 .textmsg{
   word-wrap: break-word;
 }
-#channel,#channelQ{
-  /*width: 100%;*/
-  border: 2px solid black;
-}
 #channelselect{
   display: inline-block;
 }
