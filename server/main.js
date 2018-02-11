@@ -26,51 +26,60 @@ var curAllVids3;
 setInterval(function() {
 	curtime1 += 1;
 	if(curtime1 > lengthCurVid1){
-		currentVid1 = curAllVids1[curidx1];
-		lengthCurVid1 = currentVid1.time;
-		curtime1 = 0;
-		curidx1++;
-		if(curidx1 == curAllVids1.length){
+
+		if(curidx1 >= curAllVids1.length){
 			curidx1 = 0;
 			Fiber(function(){
 				var arr = videoDB1.find({}).fetch();
 				curAllVids1 = shuffle(arr);
 			}).run();
 		}
+
+		currentVid1 = curAllVids1[curidx1];
+		lengthCurVid1 = currentVid1.time;
+		curtime1 = 0;
+		curidx1++;
+		
 	}
 }, 1000);
 
 setInterval(function() {
 	curtime2 += 1;
 	if(curtime2 > lengthCurVid2){
-		currentVid2 = curAllVids2[curidx2];
-		lengthCurVid2 = currentVid2.time;
-		curtime2 = 0;
-		curidx2++;
-		if(curidx2 == curAllVids2.length){
+
+		if(curidx2 >= curAllVids2.length){
 			curidx2 = 0;
 			Fiber(function(){
 				var arr = videoDB2.find({}).fetch();
 				curAllVids2 = shuffle(arr);
 			}).run();
 		}
+
+		currentVid2 = curAllVids2[curidx2];
+		lengthCurVid2 = currentVid2.time;
+		curtime2 = 0;
+		curidx2++;
+		
 	}
 }, 1000);
 
 setInterval(function() {
 	curtime3 += 1;
 	if(curtime3 > lengthCurVid3){
-		currentVid3 = curAllVids3[curidx3];
-		lengthCurVid3 = currentVid3.time;
-		curtime3 = 0;
-		curidx3++;
-		if(curidx3 == curAllVids3.length){
+
+		if(curidx3 >= curAllVids3.length){
 			curidx3 = 0;
 			Fiber(function(){
 				var arr = videoDB3.find({}).fetch();
 				curAllVids3 = shuffle(arr);
 			}).run();
 		}
+
+		currentVid3 = curAllVids3[curidx3];
+		lengthCurVid3 = currentVid3.time;
+		curtime3 = 0;
+		curidx3++;
+		
 	}
 }, 1000);
 
