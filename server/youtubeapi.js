@@ -68,7 +68,7 @@ setInterval(function() {
 			});
 		}
 	});
-},300000);
+} ,300000);
 
 //channel 3
 
@@ -97,4 +97,5 @@ setInterval(function() {
 			});
 		}
 	});
-},300000);
+
+} ,300000);

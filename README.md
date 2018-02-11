@@ -19,6 +19,7 @@ git clone https://github.com/huydo94/trill-tube.git
 ```
 cd trill-tube
 meteor npm install --save angular angular-meteor
+meteor npm install --save iso8601-duration
 ```
 
 Then hit 
