@@ -41,7 +41,10 @@ body,html {
   top:0;
   position:fixed;
 }
-
+#channel{    
+   width: 100%;    
+   border: 2px solid black;    
+ }
 #chats,#privatechats {
   /*background:blue;*/
   color:black;
