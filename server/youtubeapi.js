@@ -114,9 +114,3 @@ function updateDB3(){
 		}
 	});
 }
-
-Meteor.startup(() =>{
-	updateDB1();
-	updateDB2();
-	updateDB3();
-});

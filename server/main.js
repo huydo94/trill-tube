@@ -31,6 +31,7 @@ setInterval(function() {
 			curidx1 = 0;
 			Fiber(function(){
 				var arr = videoDB1.find({}).fetch();
+				if(arr.length == 0) return;
 				curAllVids1 = shuffle(arr);
 			}).run();
 		}
@@ -51,6 +52,7 @@ setInterval(function() {
 			curidx2 = 0;
 			Fiber(function(){
 				var arr = videoDB2.find({}).fetch();
+				if(arr.length == 0) return;
 				curAllVids2 = shuffle(arr);
 			}).run();
 		}
@@ -71,6 +73,7 @@ setInterval(function() {
 			curidx3 = 0;
 			Fiber(function(){
 				var arr = videoDB3.find({}).fetch();
+				if(arr.length == 0) return;
 				curAllVids3 = shuffle(arr);
 			}).run();
 		}
