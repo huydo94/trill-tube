@@ -31,28 +31,34 @@ class watchCtrl {
     }
 
     nextVid(){
-        Meteor.call('nextVid',currentChannel);
-        player.stopVideo();
+        var psw =prompt("Please enter a psw:");
+        if (psw== "next") {
+            Meteor.call('nextVid',currentChannel);
+            player.stopVideo();
+        } else {
+            return;
+        }
+        
     }
 
     turnOnChannel(channelID) {
         currentChannel = channelID;
         switch(channelID){
             case '1':
-                $(".channelbtn")[0].style.background = 'green';
-                $(".channelbtn")[1].style.background = 'black';
-                $(".channelbtn")[2].style.background = 'black';
-                break;
+            $(".channelbtn")[0].style.background = 'green';
+            $(".channelbtn")[1].style.background = 'black';
+            $(".channelbtn")[2].style.background = 'black';
+            break;
             case '2':
-                $(".channelbtn")[0].style.background = 'black';
-                $(".channelbtn")[1].style.background = 'yellow';
-                $(".channelbtn")[2].style.background = 'black';
-                break;
+            $(".channelbtn")[0].style.background = 'black';
+            $(".channelbtn")[1].style.background = 'yellow';
+            $(".channelbtn")[2].style.background = 'black';
+            break;
             case '3':
-                $(".channelbtn")[0].style.background = 'black';
-                $(".channelbtn")[1].style.background = 'black';
-                $(".channelbtn")[2].style.background = 'red';
-                break;
+            $(".channelbtn")[0].style.background = 'black';
+            $(".channelbtn")[1].style.background = 'black';
+            $(".channelbtn")[2].style.background = 'red';
+            break;
         }
         Session.set('currentChannel',currentChannel);
         synchronize();
@@ -64,10 +70,10 @@ class watchCtrl {
 
 function synchronize(){
     Meteor.call("getVid", currentChannel, function(error, result) {
-            currentVid = result;
-            player.loadVideoById(currentVid.src, 0, "default");
-            player.seekTo(currentVid.time, true);
-        });
+        currentVid = result;
+        player.loadVideoById(currentVid.src, 0, "default");
+        player.seekTo(currentVid.time, true);
+    });
 }
 
 
@@ -92,8 +98,8 @@ $(function() {
     currentChannel = '1';
     $(".channelbtn")[0].style.background = 'green';
     Session.set('currentChannel',currentChannel);
-    var width = $(window).width() - 24;
-    var height = $(window).height() - 40;
+    var width = $(window).width() /100 * 73;
+    var height = $(window).height() - 50;
 
     Meteor.call("getVid", '1', function(error, result) {
         currentVid = result;
