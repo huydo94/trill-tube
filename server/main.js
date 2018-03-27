@@ -9,19 +9,19 @@ var curtime1 = 0;
 var currentVid1;
 var lengthCurVid1 = 0;
 var curidx1 = 0;
-var curAllVids1; 
+var curAllVids1 ={}; 
 
 var curtime2 = 0;
 var currentVid2;
 var lengthCurVid2 = 0;
 var curidx2 = 0;
-var curAllVids2;
+var curAllVids2={};
 
 var curtime3 = 0;
 var currentVid3;
 var lengthCurVid3 = 0;
 var curidx3 = 0;
-var curAllVids3;
+var curAllVids3 ={};
 
 setInterval(function() {
 	curtime1 += 1;

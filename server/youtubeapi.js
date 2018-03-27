@@ -102,3 +102,33 @@ setInterval(function() {
 	});
 
 } ,300000);
+
+Meteor.startup(() =>{
+	YoutubeApi.playlistItems.list({
+		'part': 'contentDetails',
+		'maxResults':50,
+		'playlistId': 'PLXD8bU8RQ6pImoiBojoKcYcxcltCNkwcc'
+	}, function (err, data) {
+		Fiber(function(){
+			videoDB1.remove({});
+		}).run();
+		for (var i = data.items.length - 1; i >= 0; i--) {
+			var thisid = data.items[i].contentDetails.videoId;
+			YoutubeApi.videos.list({
+				'part':'contentDetails',
+				'id': thisid
+			},function(err,data){
+				var durationStr = data.items[0].contentDetails.duration;
+				var duration = Math.round(toSeconds(parse(durationStr)));
+				if(duration == 0){
+					duration = 2147483647;
+				}
+				var id = (data.items[0].id);
+				Fiber(function(){
+					Meteor.call('addVid',1,id,duration);
+				}).run();
+
+			});
+		}
+	});
+});
