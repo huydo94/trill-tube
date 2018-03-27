@@ -105,7 +105,7 @@ $(function() {
                         height:height,
                         videoId: currentVid.src,
                         playerVars: {
-                            controls: 0,
+                            controls: 1,
                             disablekb: 1,
                             rel : 0
                         },

@@ -98,12 +98,15 @@ Meteor.methods({
 		switch(channelID){
 			case '1':
 			lengthCurVid1 = 0;
+			curtime1 = 1;
 			break;
 			case '2':
 			lengthCurVid2 = 0;
+			curtime2 = 1;
 			break;
 			case '3':
 			lengthCurVid3 = 0;	
+			curtime2 = 1;
 			break;
 		}
 	}
