@@ -129,6 +129,7 @@ Meteor.methods({
  		case 1:
  		Fiber(function(){
  			var arr = videoDB1.find({}).fetch();
+ 			if(arr.length == 0) return;
  			curAllVids1 = shuffle(arr);
  			currentVid1 = curAllVids1[curidx1];		
  			lengthCurVid1 = currentVid1.time;
@@ -138,6 +139,7 @@ Meteor.methods({
  		case 2:
  		Fiber(function(){
  			var arr = videoDB2.find({}).fetch();
+ 			if(arr.length == 0) return;
  			curAllVids2 = shuffle(arr);
  			currentVid2 = curAllVids2[curidx2];		
  			lengthCurVid2 = currentVid2.time;
@@ -147,6 +149,7 @@ Meteor.methods({
  		case 3:
  		Fiber(function(){
  			var arr = videoDB3.find({}).fetch();
+ 			if(arr.length == 0) return;
  			curAllVids3 = shuffle(arr);
  			currentVid3 = curAllVids3[curidx3];		
  			lengthCurVid3 = currentVid3.time;
